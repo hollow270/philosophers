@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:51:08 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/10 17:08:01 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/14 12:47:19 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_philo
 	int				meals_eaten;
 	time_t			start_time;
 	time_t			last_meal_time;
-	pthread_mutex_t	last_meal_lock;
+	// pthread_mutex_t	last_meal_lock;
+	pthread_mutex_t	*last_meal_lock;
 	pthread_t		tid;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -41,14 +42,22 @@ typedef struct s_data
 	time_t			lifespan;
 	time_t			eating_duration;
 	time_t			sleeping_duration;
-	pthread_mutex_t	print_lock;
+	// pthread_mutex_t	print_lock;
+	pthread_mutex_t	*print_lock;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	int				terminated;
-	pthread_mutex_t	terminated_lock;
+	// pthread_mutex_t	terminated_lock;
+	pthread_mutex_t	*terminated_lock;
 	int				n_philos;
 	int				n_meals;
 }					t_data;
+
+typedef struct s_gc_mutex
+{
+	pthread_mutex_t		*ptr;
+	struct s_gc_mutex	*next;
+}						t_gc_mutex;
 
 typedef struct s_gc_node
 {
@@ -73,5 +82,10 @@ void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
 time_t	get_current_time(void);
 void	print_habit(t_philo *philo, char *msg);
+int gc_mutex_init(pthread_mutex_t **mutex);
+void gc_mutex_destroy_all(void);
+int gc_mutex_register(pthread_mutex_t *mutex);
+// int initialize_philos_with_gc(t_data *data);
+// int fill_philos_with_gc(t_data *data, int i);
 
 #endif

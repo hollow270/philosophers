@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:13:01 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/10 17:41:00 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/14 12:39:32 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,24 @@ time_t	get_last_meal(t_philo *philo)
 {
 	time_t	tmp;
 
-	if (pthread_mutex_lock(&philo->last_meal_lock) != 0)
+	// if (pthread_mutex_lock(&philo->last_meal_lock) != 0)
+	if (pthread_mutex_lock(philo->last_meal_lock) != 0)
 		return (-1);
 	tmp = philo->last_meal_time;
-	if (pthread_mutex_unlock(&philo->last_meal_lock) != 0)
+	// if (pthread_mutex_unlock(&philo->last_meal_lock) != 0)
+	if (pthread_mutex_unlock(philo->last_meal_lock) != 0)
 		return (-1);
 	return (tmp);
 }
 
 void	set_last_meal(t_philo *philo, time_t time)
 {
-	if (pthread_mutex_lock(&philo->last_meal_lock) != 0)
+	// if (pthread_mutex_lock(&philo->last_meal_lock) != 0)
+	if (pthread_mutex_lock(philo->last_meal_lock) != 0)
 		return ;
 	philo->last_meal_time = time;
-	if (pthread_mutex_unlock(&philo->last_meal_lock) != 0)
+	// if (pthread_mutex_unlock(&philo->last_meal_lock) != 0)
+	if (pthread_mutex_unlock(philo->last_meal_lock) != 0)
 		return ;
 }
 
