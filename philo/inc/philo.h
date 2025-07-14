@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:51:08 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 12:47:19 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/14 13:45:37 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,8 @@ void	philo_sleep(t_philo *philo);
 void	philo_think(t_philo *philo);
 time_t	get_current_time(void);
 void	print_habit(t_philo *philo, char *msg);
-int gc_mutex_init(pthread_mutex_t **mutex);
-void gc_mutex_destroy_all(void);
-int gc_mutex_register(pthread_mutex_t *mutex);
-// int initialize_philos_with_gc(t_data *data);
-// int fill_philos_with_gc(t_data *data, int i);
+int		gc_mutex_init(pthread_mutex_t **mutex);
+void	gc_mutex_destroy_all(void);
+int		gc_mutex_register(pthread_mutex_t *mutex);
 
 #endif
