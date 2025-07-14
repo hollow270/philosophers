@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:51:08 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 14:27:02 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:51:21 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "stdio.h"
 # include "unistd.h"
 # include "stdlib.h"
-# include "limits.h"
-# include "time.h"
 # include "sys/time.h"
 # include "pthread.h"
-# include "strings.h"
-# include "string.h"
+
+// # include "limits.h"
+// # include "time.h"
+// # include "strings.h"
+// # include "string.h"
 
 typedef struct s_philo
 {

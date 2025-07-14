@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:11:07 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 14:25:58 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:44:05 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static int	initialize_philos_helper(t_data *data);
 static int	fill_philos(t_data *data, int i);
+static int	create_threads(t_data *data, pthread_t *monitor_th_id);
+static int	join_threads(t_data *data, pthread_t *monitor_th_id);
 
 int	initialize_philos(t_data *data)
 {
@@ -30,15 +32,9 @@ int	initialize_philos(t_data *data)
 		return (-1);
 	if (initialize_philos_helper(data) != 0)
 		return (-1);
-	if (pthread_create(&monitor_th_id, NULL, cctv, data) != 0)
+	if (create_threads(data, &monitor_th_id) != 0)
 		return (-1);
-	i = -1;
-	while (++i < data->n_philos)
-	{
-		if (pthread_join(data->philos[i].tid, NULL) != 0)
-			return (-1);
-	}
-	if (pthread_join(monitor_th_id, NULL) != 0)
+	if (join_threads(data, &monitor_th_id) != 0)
 		return (-1);
 	return (0);
 }
@@ -62,13 +58,6 @@ static int	initialize_philos_helper(t_data *data)
 			return (-1);
 		i++;
 	}
-	i = -1;
-	while (++i < data->n_philos)
-	{
-		if (pthread_create(&data->philos[i].tid,
-				NULL, habits, &data->philos[i]) != 0)
-			return (-1);
-	}
 	return (0);
 }
 
@@ -90,11 +79,46 @@ static int	fill_philos(t_data *data, int i)
 	return (0);
 }
 
-time_t	get_current_time(void)
+static int	create_threads(t_data *data, pthread_t *monitor_th_id)
 {
-	struct timeval	ac;
+	int			i;
 
-	if (gettimeofday(&ac, NULL) != 0)
+	i = -1;
+	while (++i < data->n_philos)
+		data->philos[i].tid = 0;
+	*monitor_th_id = 0;
+	i = -1;
+	while (++i < data->n_philos)
+	{
+		data->philos[i].tid = 0;
+		if (pthread_create(&data->philos[i].tid,
+				NULL, habits, &data->philos[i]) != 0)
+			return (-1);
+	}
+	if (pthread_create(monitor_th_id, NULL, cctv, data) != 0)
 		return (-1);
-	return (ac.tv_sec * 1000 + ac.tv_usec / 1000);
+	return (0);
+}
+
+static int	join_threads(t_data *data, pthread_t *monitor_th_id)
+{
+	int	i;
+	int	ret;
+
+	i = -1;
+	ret = 0;
+	while (++i < data->n_philos)
+	{
+		if (data->philos[i].tid != 0)
+		{
+			if (pthread_join(data->philos[i].tid, NULL) != 0)
+				ret = -1;
+		}
+	}
+	if (*monitor_th_id != 0)
+	{
+		if (pthread_join(*monitor_th_id, NULL) != 0)
+			ret = -1;
+	}
+	return (ret);
 }
