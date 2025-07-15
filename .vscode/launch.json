@@ -5,9 +5,9 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "lldb",
       "request": "launch",
-      "args": [],
-      "cwd": "/mnt/homes/yhajbi/Desktop/github/philosophers/philo/src",
-      "program": "/mnt/homes/yhajbi/Desktop/github/philosophers/philo/src/build/Debug/outDebug"
+      "args": ["5", "800", "200", "200", "5"],
+      "cwd": "/mnt/homes/yhajbi/Desktop/github/philosophers/philo",
+      "program": "/mnt/homes/yhajbi/Desktop/github/philosophers/philo/philo"
     }
   ]
 }

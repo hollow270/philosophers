@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:51:08 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/15 12:55:12 by usf              ###   ########.fr       */
+/*   Updated: 2025/07/15 15:32:31 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,6 @@
 # include "stdlib.h"
 # include "sys/time.h"
 # include "pthread.h"
-
-// # include "limits.h"
-// # include "time.h"
-// # include "strings.h"
-// # include "string.h"
 
 typedef struct s_philo
 {
@@ -85,5 +80,6 @@ int		gc_mutex_init(pthread_mutex_t **mutex);
 void	gc_mutex_destroy_all(void);
 int		gc_mutex_register(pthread_mutex_t *mutex);
 int		increment_meals_eaten(t_philo *philo);
+int	check_args(int ac, char **av);
 
 #endif

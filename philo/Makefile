@@ -10,7 +10,8 @@ src/initialize_philos.c \
 src/cctv.c \
 src/habits.c \
 src/utils.c \
-src/gc_mutex.c
+src/gc_mutex.c \
+src/args_validation.c
 OBJ = $(SRC:.c=.o)
 
 NAME = philo
