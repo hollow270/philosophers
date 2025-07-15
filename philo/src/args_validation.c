@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:31:36 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/15 15:35:37 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/15 15:39:28 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static int	has_valid_end(char *s)
 
 static int	is_valid_arg(char *s)
 {
-	int	i;
+	int		i;
 	char	prev_c;
 
 	if (!s || *s == '\0')
