@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cctv.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:13:01 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 14:13:16 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:53:08 by usf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,25 @@ int	compare_meals_eaten(t_data *data)
 	count = 0;
 	while (i < data->n_philos)
 	{
+		if (pthread_mutex_lock(data->philos[i].meals_eaten_lock) != 0)
+			return (-1);
 		if (data->philos[i].meals_eaten >= data->n_meals)
 			count++;
+		if (pthread_mutex_unlock(data->philos[i].meals_eaten_lock) != 0)
+			return (-1);
 		i++;
 	}
 	if (count >= data->n_philos)
 		return (1);
+	return (0);
+}
+
+int	increment_meals_eaten(t_philo *philo)
+{
+	if (pthread_mutex_lock(philo->meals_eaten_lock) != 0)
+		return (-1);
+	philo->meals_eaten++;
+	if (pthread_mutex_unlock(philo->meals_eaten_lock) != 0)
+		return (-1);
 	return (0);
 }

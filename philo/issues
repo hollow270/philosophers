@@ -1,4 +1,4 @@
-DONE check negative values in args
-DONE destroy all mutexes in case of mutex fail or at the end 
+DONE	check negative values in args
+DONE	destroy all mutexes in case of mutex fail or at the end 
 		of the program using a garbage collector-like logic
-zombie threads, join created threads back if a thread creation failed in the process
+DONE	zombie threads, join created threads back if a thread creation failed in the process

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_philos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:11:07 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 16:44:05 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:50:50 by usf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int	initialize_philos_helper(t_data *data)
 static int	fill_philos(t_data *data, int i)
 {
 	if (gc_mutex_init(&data->philos[i].last_meal_lock) != 0)
+		return (-1);
+	if (gc_mutex_init(&data->philos[i].meals_eaten_lock) != 0)
 		return (-1);
 	data->philos[i].id = i;
 	data->philos[i].start_time = get_current_time();

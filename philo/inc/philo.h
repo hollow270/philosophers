@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 10:51:08 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 16:51:21 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:55:12 by usf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals_eaten;
+	pthread_mutex_t	*meals_eaten_lock;
 	time_t			start_time;
 	time_t			last_meal_time;
 	pthread_mutex_t	*last_meal_lock;
@@ -83,5 +84,6 @@ void	print_habit(t_philo *philo, char *msg);
 int		gc_mutex_init(pthread_mutex_t **mutex);
 void	gc_mutex_destroy_all(void);
 int		gc_mutex_register(pthread_mutex_t *mutex);
+int		increment_meals_eaten(t_philo *philo);
 
 #endif

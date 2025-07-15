@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   habits.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:17:03 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/10 18:27:25 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:56:01 by usf              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	*habits(void *args)
 	while (!get_state(philo->data))
 	{
 		philo_eat(philo);
-		philo->meals_eaten++;
+		increment_meals_eaten(philo);
 		philo_sleep(philo);
 		philo_think(philo);
 	}
