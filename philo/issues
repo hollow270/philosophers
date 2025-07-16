@@ -1,1 +1,2 @@
 DONE	handle case where arguments have characters
+DONE	compile with the flags and remove the debug flag

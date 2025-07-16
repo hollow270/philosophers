@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialize_philos.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: usf <usf@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:11:07 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/15 12:50:50 by usf              ###   ########.fr       */
+/*   Updated: 2025/07/16 21:36:33 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	join_threads(t_data *data, pthread_t *monitor_th_id);
 
 int	initialize_philos(t_data *data)
 {
-	int			i;
 	pthread_t	monitor_th_id;
 
 	if (gc_mutex_init(&data->print_lock) != 0)

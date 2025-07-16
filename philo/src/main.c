@@ -6,14 +6,11 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/06 11:20:43 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/15 15:38:55 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/16 21:36:12 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/philo.h"
-
-// static int	check_args(int ac, char **av);
-static int	has_alpha(char *s);
 
 int	main(int ac, char **av)
 {
