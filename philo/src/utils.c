@@ -6,7 +6,7 @@
 /*   By: yhajbi <yhajbi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 15:19:50 by yhajbi            #+#    #+#             */
-/*   Updated: 2025/07/14 16:51:04 by yhajbi           ###   ########.fr       */
+/*   Updated: 2025/07/22 22:59:21 by yhajbi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	print_habit(t_philo *philo, char *msg)
 	if (!i)
 		printf("%ld %d %s\n",
 			get_current_time() - philo->start_time, philo->id + 1, msg);
-	if (pthread_mutex_unlock(philo->data->print_lock) != 0)
-		return ;
 	if (!ft_strcmp("died", msg))
 		i++;
+	if (pthread_mutex_unlock(philo->data->print_lock) != 0)
+		return ;
 }
 
 time_t	get_current_time(void)
